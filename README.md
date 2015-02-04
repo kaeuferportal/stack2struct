@@ -7,9 +7,9 @@ stack2struct parses raw golang stack traces ([]byte) to a slice of well formated
 ## Getting Started
 
 ### Installation
-
+```
   $ go get github.com/kaeuferportal/stack2struct
-
+```
 ### Usage
 ```
 package main
