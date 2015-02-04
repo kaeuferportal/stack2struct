@@ -1,9 +1,10 @@
 package stack2struct
 
 import (
-	. "github.com/smartystreets/goconvey/convey"
 	"io/ioutil"
 	"testing"
+
+	. "github.com/smartystreets/goconvey/convey"
 )
 
 type testElement struct {
