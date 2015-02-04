@@ -34,7 +34,7 @@ func TestStack2Struct(t *testing.T) {
 	})
 
 	Convey("#Parse", t, func() {
-		buf, _ := ioutil.ReadFile("fixtures/stack_trace")
+		buf, _ := ioutil.ReadFile("_fixtures/stack_trace")
 
 		stack := make(testStack, 0, 0)
 		Parse(buf, &stack)
