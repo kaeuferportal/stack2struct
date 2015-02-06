@@ -1,11 +1,11 @@
 goroutine 5 [running]:
-codevault.io/go_projects/raygun4go/stack2struct.func·001()
-/Users/jakob/Code/go/src/codevault.io/go_projects/raygun4go/stack2struct/stack2struct_test.go:13 +0x72
+foo/path/stack2struct.func·001()
+foo/path/stack2struct/stack2struct_test.go:13 +0x72
 github.com/smartystreets/goconvey/convey.(*action).Invoke(0x208304420)
-/Users/jakob/Code/go/src/github.com/smartystreets/goconvey/convey/registration.go:44 +0x24
+foo/path/github.com/smartystreets/goconvey/convey/registration.go:44 +0x24
 github.com/smartystreets/goconvey/convey.(*scope).visit(0x208326120, 0x2082d26c0)
-/Users/jakob/Code/go/src/github.com/smartystreets/goconvey/convey/scope.go:70 +0x1b8
+foo/path/github.com/smartystreets/goconvey/convey/scope.go:70 +0x1b8
 github.com/smartystreets/goconvey/convey.(*scope).visitNextChild(0x208326090, 0x2082d26c0)
-/Users/jakob/Code/go/src/github.com/smartystreets/goconvey/convey/scope.go:78 +0x76
+foo/path/github.com/smartystreets/goconvey/convey/scope.go:78 +0x76
 github.com/smartystreets/goconvey/convey.(*scope).visit(0x208326090, 0x2082d26c0)
-/Users/jakob/Code/go/src/github.com/smartystreets/goconvey/convey/scope.go:71 +0x1d6
+foo/path/github.com/smartystreets/goconvey/convey/scope.go:71 +0x1d6

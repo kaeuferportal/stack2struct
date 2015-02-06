@@ -41,7 +41,7 @@ func TestStack2Struct(t *testing.T) {
 		Parse(buf, &stack)
 
 		expectedFirstEntry := testElement{13,
-			"codevault.io/go_projects/raygun4go/stack2struct",
+			"foo/path/stack2struct",
 			"stack2struct_test.go",
 			"func·001()"}
 
