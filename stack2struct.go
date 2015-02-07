@@ -19,6 +19,7 @@ package stack2struct
 
 import (
 	"fmt"
+	"runtime"
 	"strconv"
 	"strings"
 )
@@ -28,6 +29,12 @@ type stackTrace interface {
 	AddEntry(lineNumber int, packageName string, fileName string, methodName string)
 }
 
+// Current loads the current stacktrace into a given stack
+func Current(stack stackTrace) {
+	rawStack := make([]byte, 1<<16)
+	rawStack = rawStack[:runtime.Stack(rawStack, false)]
+	Parse(rawStack, stack)
+}
 
 // Parse loads the stack trace (given as trace) into the given stack.
 // See Current() on how to obtain a stack trace.
