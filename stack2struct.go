@@ -3,16 +3,16 @@
 // As this package will need to evolve with the development of go's stack trace
 // format, this is the stack format the package currently works with:
 //
-//   1: goroutine x [running]:                 <-- ignore this line
-//   2: path/to/package.functionName()
-//   3: path/to/responsible/file:lineNumber +0xdeadbeef
-//   ... repeat 2 + 3 for each stack trace element
+//  1: goroutine x [running]:                 <-- ignore this line
+//  2: path/to/package.functionName()
+//  3: path/to/responsible/file:lineNumber +0xdeadbeef
+//  ... repeat 2 + 3 for each stack trace element
 //
 // To work with this, you need a type satisfying the interface
 //
-//	 type stackTrace interface {
-// 	   AddEntry(lineNumber int, packageName string, fileName string, methodName string)
-//   }
+//  type stackTrace interface {
+// 	  AddEntry(lineNumber int, packageName string, fileName string, methodName string)
+//  }
 //
 // and from there you can do whatever you like with the accumulated data.
 package stack2struct
