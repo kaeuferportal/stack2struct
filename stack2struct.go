@@ -1,4 +1,20 @@
 // stack2struct parses raw golang stack traces ([]byte) to a slice of well formated structs.
+
+// As this package will need to evolve with the development of go's stack trace
+// format, this is the stack format the package currently works with:
+//
+//   1: goroutine x [running]:                 <-- ignore this line
+//   2: path/to/package.functionName()
+//   3: path/to/responsible/file:lineNumber +0xdeadbeef
+//   ... repeat 2 + 3 for each stack trace element
+//
+// To work with this, you need a type satisfying the interface
+//
+//	 type stackTrace interface {
+// 	   AddEntry(lineNumber int, packageName string, fileName string, methodName string)
+//   }
+//
+// and from there you can do whatever you like with the accumulated data.
 package stack2struct
 
 import (
@@ -7,11 +23,14 @@ import (
 	"strings"
 )
 
+// stackTrace is the interface a target stack has to satisfy.
 type stackTrace interface {
 	AddEntry(lineNumber int, packageName string, fileName string, methodName string)
 }
 
 
+// Parse loads the stack trace (given as trace) into the given stack.
+// See Current() on how to obtain a stack trace.
 func Parse(trace []byte, stack stackTrace) {
 	lines := strings.Split(string(trace), "\n")
 
@@ -31,6 +50,8 @@ func Parse(trace []byte, stack stackTrace) {
 	}
 }
 
+// extractPageName receives a trace line and extracts packageName and
+// methodName.
 func extractPackageName(line string) (packageName, methodName string) {
 	packagePath, packageNameAndFunction := splitAtLastSlash(line)
 	parts := strings.Split(packageNameAndFunction, ".")
@@ -39,6 +60,8 @@ func extractPackageName(line string) (packageName, methodName string) {
 	return
 }
 
+// extractLineNumberAndFile receives a trace line and extracts lineNumber and
+// fileName.
 func extractLineNumberAndFile(line string) (lineNumber int, fileName string) {
 	_, fileAndLine := splitAtLastSlash(line)
 	fileAndLine = removeSpaceAndSuffix(fileAndLine)
@@ -52,6 +75,8 @@ func extractLineNumberAndFile(line string) (lineNumber int, fileName string) {
 	return lineNumber, fileName
 }
 
+// splitAtLastSlash splits a string at the last found slash and returns the
+// respective strings left and right of the slash.
 func splitAtLastSlash(line string) (left, right string) {
 	parts := strings.Split(line, "/")
 	right = parts[len(parts)-1]
@@ -59,6 +84,8 @@ func splitAtLastSlash(line string) (left, right string) {
 	return
 }
 
+// removeSpaceAndSuffix splits the given string at ' ' and cuts off the part
+// found after the last space.
 func removeSpaceAndSuffix(line string) string {
 	parts := strings.Split(line, " ")
 	return strings.Join(parts[:len(parts)-1], " ")
