@@ -11,8 +11,8 @@ type stackTrace interface {
 	AddEntry(lineNumber int, packageName string, fileName string, methodName string)
 }
 
-func Parse(trace []byte, stackTrace stackTrace) {
 
+func Parse(trace []byte, stack stackTrace) {
 	lines := strings.Split(string(trace), "\n")
 
 	var lineNumber int
@@ -26,7 +26,7 @@ func Parse(trace []byte, stackTrace stackTrace) {
 			packageName, methodName = extractPackageName(line)
 		} else {
 			lineNumber, fileName = extractLineNumberAndFile(line)
-			stackTrace.AddEntry(lineNumber, packageName, fileName, methodName)
+			stack.AddEntry(lineNumber, packageName, fileName, methodName)
 		}
 	}
 }
