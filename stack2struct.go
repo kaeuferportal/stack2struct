@@ -11,7 +11,7 @@
 // To work with this, you need a type satisfying the interface
 //
 //  type stackTrace interface {
-// 	  AddEntry(lineNumber int, packageName string, fileName string, methodName string)
+//    AddEntry(lineNumber int, packageName string, fileName string, methodName string)
 //  }
 //
 // and from there you can do whatever you like with the accumulated data.
