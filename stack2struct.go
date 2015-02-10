@@ -63,7 +63,7 @@ func extractPackageName(line string) (packageName, methodName string) {
 	packagePath, packageNameAndFunction := splitAtLastSlash(line)
 	parts := strings.Split(packageNameAndFunction, ".")
 	packageName = fmt.Sprintf("%s/%s", packagePath, parts[0])
-	methodName = parts[1]
+	methodName = strings.Join(parts[1:], ".")
 	return
 }
 

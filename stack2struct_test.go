@@ -14,10 +14,10 @@ type testElement struct {
 	methodName  string
 }
 
-type testStack []*testElement
+type testStack []testElement
 
 func (t *testStack) AddEntry(lineNumber int, packageName, fileName, methodName string) {
-	*t = append(*t, &testElement{lineNumber, packageName, fileName, methodName})
+	*t = append(*t, testElement{lineNumber, packageName, fileName, methodName})
 }
 
 func TestStack2Struct(t *testing.T) {
@@ -40,19 +40,26 @@ func TestStack2Struct(t *testing.T) {
 		stack := make(testStack, 0, 0)
 		Parse(buf, &stack)
 
-		expectedFirstEntry := testElement{13,
-			"foo/path/stack2struct",
-			"stack2struct_test.go",
-			"func·001()"}
+		expected := testStack{
+			testElement{13,
+				"foo/path/stack2struct",
+				"stack2struct_test.go",
+				"func·001()"},
+			testElement{44,
+				"github.com/smartystreets/goconvey/convey",
+				"registration.go",
+				"(*action).Invoke(0x208304420)"},
+		}
 
 		So(len(stack), ShouldEqual, 5)
 		firstEntry := stack[0]
-		So(firstEntry.lineNumber, ShouldEqual, expectedFirstEntry.lineNumber)
-		So(firstEntry.packageName, ShouldEqual, expectedFirstEntry.packageName)
-		So(firstEntry.fileName, ShouldEqual, expectedFirstEntry.fileName)
-		So(firstEntry.methodName, ShouldEqual, expectedFirstEntry.methodName)
+		So(firstEntry.lineNumber, ShouldEqual, expected[0].lineNumber)
+		So(firstEntry.packageName, ShouldEqual, expected[0].packageName)
+		So(firstEntry.fileName, ShouldEqual, expected[0].fileName)
+		So(firstEntry.methodName, ShouldEqual, expected[0].methodName)
 
-		So(*stack[0], ShouldResemble, expectedFirstEntry)
+		So(stack[0], ShouldResemble, expected[0])
+		So(stack[1], ShouldResemble, expected[1])
 	})
 
 }
