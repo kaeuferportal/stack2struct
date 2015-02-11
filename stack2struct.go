@@ -62,7 +62,10 @@ func Parse(trace []byte, stack stackTrace) {
 func extractPackageName(line string) (packageName, methodName string) {
 	packagePath, packageNameAndFunction := splitAtLastSlash(line)
 	parts := strings.Split(packageNameAndFunction, ".")
-	packageName = fmt.Sprintf("%s/%s", packagePath, parts[0])
+	packageName = parts[0]
+	if len(packagePath) > 0 {
+		packageName = fmt.Sprintf("%s/%s", packagePath, packageName)
+	}
 	methodName = strings.Join(parts[1:], ".")
 	return
 }

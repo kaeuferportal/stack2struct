@@ -42,7 +42,7 @@ func TestStack2Struct(t *testing.T) {
 
 		expected := testStack{
 			testElement{13,
-				"foo/path/stack2struct",
+				"main",
 				"stack2struct_test.go",
 				"func·001()"},
 			testElement{44,

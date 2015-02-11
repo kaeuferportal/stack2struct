@@ -1,6 +1,6 @@
 # stack2struct
 [![Build Status](https://travis-ci.org/kaeuferportal/stack2struct.svg?branch=master)](https://travis-ci.org/kaeuferportal/stack2struct)
-[![Coverage](http://gocover.io/_badge/github.com/kaeuferportal/stack2struct)](http://gocover.io/github.com/kaeuferportal/stack2struct) 
+[![Coverage](http://gocover.io/_badge/github.com/kaeuferportal/stack2struct)](http://gocover.io/github.com/kaeuferportal/stack2struct)
 [![GoDoc](https://godoc.org/github.com/kaeuferportal/stack2struct?status.svg)](http://godoc.org/github.com/kaeuferportal/stack2struct)
 
 stack2struct parses raw golang stack traces ([]byte) to a slice of well formated structs.
@@ -56,7 +56,7 @@ should print
 [
   {
     "lineNumber": 27,
-    "className": "/main",
+    "className": "main",
     "fileName": "test.go",
     "methodName": "main()"
   }

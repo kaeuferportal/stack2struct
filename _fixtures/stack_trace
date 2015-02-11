@@ -1,6 +1,6 @@
 goroutine 5 [running]:
-foo/path/stack2struct.func·001()
-foo/path/stack2struct/stack2struct_test.go:13 +0x72
+main.func·001()
+main/stack2struct_test.go:13 +0x72
 github.com/smartystreets/goconvey/convey.(*action).Invoke(0x208304420)
 foo/path/github.com/smartystreets/goconvey/convey/registration.go:44 +0x24
 github.com/smartystreets/goconvey/convey.(*scope).visit(0x208326120, 0x2082d26c0)
